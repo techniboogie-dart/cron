@@ -17,41 +17,40 @@ class Cron {
     dayOfWeek = _expandTimeExpression(timeExpressions[5], CronField.dayOfWeek);
   }
 
-  List<int> _expandTimeExpression(String timeExp, CronField cronField) {
-    List<int> ticks = [];
-
-    List<String> segments = timeExp.split(',');
-
-    for (String segment in segments) {
-
-      if (timeExp == '*') {
-
-        switch (cronField) {
-          case CronField.second:
-            second = new List().fillRange(0, 60);
-            break;
-        }
-      }
-      else if (match -) {
-
-      }
-      else {
-        //TODO throw error if now an int
-        ticks.add(segment);
-      }
-    }
-
-    //TODO normalize
-    return ticks;
-  }
 
   getRange(start, stop, step) {
-    
+
   }
 
   DateTime calculateNextTimeFromDate(DateTime dateTime) {
 
   }
+}
+
+List<int> _expandTimeExpression(String timeExp, CronField cronField) {
+  List<int> ticks = [];
+
+
+  List<String> segments = timeExp.split(',');
+
+  for (String segment in segments) {
+
+    if (timeExp == '*') { // steps
+
+          second = new List().fillRange(0, 60);
+      }
+    }
+    else if (match -) { // steps
+
+    }
+    else {
+      //TODO throw error if not an int
+      ticks.add(segment);
+    }
+  }
+
+  //TODO normalize
+  return ticks;
 }
 
 // enum CronField {
